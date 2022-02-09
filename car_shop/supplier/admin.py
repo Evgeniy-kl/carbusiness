@@ -1,3 +1,6 @@
 from django.contrib import admin
+from supplier.models import Supplier, SupplierHistory, DiscountSupplier
 
-# Register your models here.
+admin.site.register(Supplier)
+admin.site.register(SupplierHistory)
+admin.site.register(DiscountSupplier)
