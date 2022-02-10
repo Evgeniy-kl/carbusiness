@@ -1,3 +1,7 @@
 from django.contrib import admin
+from showroom.models import Showroom, ShowroomHistory, DiscountShowroom, Location
 
-# Register your models here.
+
+@admin.register(Showroom, ShowroomHistory, DiscountShowroom, Location)
+class DefaultAdmin(admin.ModelAdmin):
+    pass

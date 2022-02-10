@@ -1,3 +1,7 @@
 from django.contrib import admin
+from customer.models import Customer, CustomerHistory, Offer
 
-# Register your models here.
+
+@admin.register(Customer, CustomerHistory, Offer)
+class DefaultAdmin(admin.ModelAdmin):
+    pass
