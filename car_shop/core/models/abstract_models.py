@@ -29,7 +29,6 @@ class AbstractHistory(models.Model):
         abstract = True
 
     car = models.ForeignKey('car.Car', on_delete=models.CASCADE)
-    showroom = models.ForeignKey('showroom.Showroom', on_delete=models.CASCADE)
     price = models.DecimalField(
         verbose_name='Price',
         max_digits=100,
@@ -37,7 +36,7 @@ class AbstractHistory(models.Model):
     )
 
     def __str__(self):
-        return f'{self.showroom} - {self.car}'
+        return f'{self.price}- {self.car}'
 
 
 class AbstractDiscount(models.Model):

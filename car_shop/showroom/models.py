@@ -7,7 +7,7 @@ from core.models import abstract_models
 
 
 class ShowroomHistory(abstract_models.CreatedAt, abstract_models.AbstractHistory):
-    pass
+    showroom = models.ForeignKey('Showroom', on_delete=models.CASCADE)
 
 
 class ShowroomCar(abstract_models.IsActive):
@@ -69,4 +69,5 @@ class Showroom(abstract_models.IsActive, abstract_models.UpdatedAt):
 
 
 class DiscountShowroom(abstract_models.IsActive, abstract_models.AbstractDiscount, abstract_models.CreatedAt):
-    pass
+    showroom = models.ForeignKey(Showroom, on_delete=models.CASCADE)
+

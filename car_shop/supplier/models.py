@@ -7,7 +7,7 @@ from core.models import abstract_models
 
 
 class SupplierHistory(abstract_models.CreatedAt, abstract_models.AbstractHistory):
-    pass
+    supplier = models.ForeignKey('Supplier', on_delete=models.CASCADE)
 
 
 class Supplier(abstract_models.IsActive, abstract_models.CreatedAt, abstract_models.UpdatedAt):
@@ -47,4 +47,4 @@ class Supplier(abstract_models.IsActive, abstract_models.CreatedAt, abstract_mod
 
 
 class DiscountSupplier(abstract_models.IsActive, abstract_models.AbstractDiscount, abstract_models.CreatedAt):
-    pass
+    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
