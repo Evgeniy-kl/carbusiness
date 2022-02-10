@@ -3,14 +3,19 @@ from core.models import abstract_models
 
 
 class CarManufacturer(abstract_models.IsActive, abstract_models.CreatedAt):
-    manufacturer_name = models.CharField(verbose_name='Manufacturer', max_length=100, unique=True)
+    name = models.CharField(verbose_name='Manufacturer', max_length=100, unique=True)
 
     def __str__(self):
-        return self.manufacturer_name
+        return self.name
 
 
 class Car(abstract_models.IsActive, abstract_models.CreatedAt):
-    manufacturer = models.ForeignKey(CarManufacturer, on_delete=models.CASCADE)
+    manufacturer = models.ForeignKey(
+        CarManufacturer,
+        on_delete=models.CASCADE,
+        related_name='manufacturer',
+        related_query_name='manufacturers'
+    )
     model = models.CharField(
         verbose_name='Car model',
         max_length=100,
