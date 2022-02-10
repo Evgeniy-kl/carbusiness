@@ -32,7 +32,7 @@ class Showroom(abstract_models.IsActive, abstract_models.UpdatedAt):
         max_length=100,
         unique=True
     )
-    location = models.OneToOneField(Location, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
     features = models.JSONField()
     cars = models.ManyToManyField(
         Car,
@@ -61,7 +61,8 @@ class Showroom(abstract_models.IsActive, abstract_models.UpdatedAt):
         'DiscountShowroom',
         on_delete=models.CASCADE,
         blank=True,
-        null=True
+        null=True,
+        related_name='discount'
     )
 
     def __str__(self):
