@@ -25,6 +25,9 @@ class Location(models.Model):
     street = models.CharField(max_length=50)
     house = models.CharField(max_length=50)
 
+    def __str__(self):
+        return f'{self.country.name}, {self.city}, {self.street} {self.house}'
+
 
 class Showroom(abstract_models.IsActive, abstract_models.UpdatedAt):
     name = models.CharField(

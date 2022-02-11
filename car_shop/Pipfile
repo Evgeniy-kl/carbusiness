@@ -12,6 +12,7 @@ djangorestframework = "*"
 tzdata = "*"
 django-rest-swagger = "*"
 django-debug-toolbar = "*"
+drf-yasg = "*"
 
 [dev-packages]
 
