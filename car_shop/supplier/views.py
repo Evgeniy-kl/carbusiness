@@ -4,6 +4,7 @@ from supplier.serializers import SupplierSerializer, SupplierHistorySerializer, 
 from supplier.models import Supplier, SupplierHistory, DiscountSupplier
 from rest_framework import mixins, viewsets, status
 from rest_framework.response import Response
+from rest_framework import filters
 
 
 class SupplierViewSet(mixins.ListModelMixin, mixins.CreateModelMixin,
@@ -14,6 +15,8 @@ class SupplierViewSet(mixins.ListModelMixin, mixins.CreateModelMixin,
     serializer_class = SupplierSerializer
     permission_classes = [AllowAny, ]
     queryset = Supplier.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['cars__model', ]
 
     def get_serializer_class(self):
         return self.serializers.get(self.action, self.serializer_class)
@@ -62,6 +65,8 @@ class SupplierHistoryViewSet(mixins.ListModelMixin, mixins.CreateModelMixin,
     serializer_class = SupplierHistorySerializer
     permission_classes = [AllowAny, ]
     queryset = SupplierHistory.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['supplier__name', ]
 
 
 class SupplierDiscountViewSet(mixins.ListModelMixin, mixins.CreateModelMixin,
@@ -70,3 +75,5 @@ class SupplierDiscountViewSet(mixins.ListModelMixin, mixins.CreateModelMixin,
     serializer_class = DiscountSupplierSerializer
     permission_classes = [AllowAny, ]
     queryset = DiscountSupplier.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['supplier__name', ]

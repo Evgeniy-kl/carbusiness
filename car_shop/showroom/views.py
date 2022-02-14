@@ -5,6 +5,7 @@ from showroom.serializers import ShowroomSerializer, LocationSerializer, Discoun
 from showroom.models import Showroom, Location, ShowroomHistory, DiscountShowroom
 from rest_framework import mixins, viewsets, status
 from rest_framework.response import Response
+from rest_framework import filters
 
 
 class ShowroomViewSet(mixins.ListModelMixin, mixins.CreateModelMixin,
@@ -15,6 +16,8 @@ class ShowroomViewSet(mixins.ListModelMixin, mixins.CreateModelMixin,
     serializer_class = ShowroomSerializer
     permission_classes = [AllowAny, ]
     queryset = Showroom.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['features', 'name', 'cars__model', ]
 
     def get_serializer_class(self):
         return self.serializers.get(self.action, self.serializer_class)
@@ -66,6 +69,8 @@ class LocationViewSet(
 ):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['country', 'city', ]
 
 
 class ShowroomHistoryViewSet(
@@ -77,6 +82,8 @@ class ShowroomHistoryViewSet(
 ):
     queryset = ShowroomHistory.objects.all()
     serializer_class = ShowroomHistorySerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['showroom__name', ]
 
 
 class DiscountShowroomViewSet(
@@ -88,3 +95,5 @@ class DiscountShowroomViewSet(
 ):
     queryset = DiscountShowroom.objects.all()
     serializer_class = DiscountShowroomSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['showroom__name', ]

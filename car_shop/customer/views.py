@@ -9,6 +9,7 @@ from rest_framework import mixins
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework.decorators import permission_classes
 from customer.permissions import IsUser
+from rest_framework import filters
 
 
 class UserViewSet(

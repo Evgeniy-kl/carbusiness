@@ -13,6 +13,7 @@ tzdata = "*"
 django-rest-swagger = "*"
 django-debug-toolbar = "*"
 drf-yasg = "*"
+django-filter = "*"
 
 [dev-packages]
 
