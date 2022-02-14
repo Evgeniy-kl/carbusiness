@@ -15,8 +15,9 @@ class SupplierViewSet(mixins.ListModelMixin, mixins.CreateModelMixin,
     serializer_class = SupplierSerializer
     permission_classes = [AllowAny, ]
     queryset = Supplier.objects.all()
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['cars__model', ]
+    ordering_fields = ['foundation', ]
 
     def get_serializer_class(self):
         return self.serializers.get(self.action, self.serializer_class)
@@ -75,5 +76,6 @@ class SupplierDiscountViewSet(mixins.ListModelMixin, mixins.CreateModelMixin,
     serializer_class = DiscountSupplierSerializer
     permission_classes = [AllowAny, ]
     queryset = DiscountSupplier.objects.all()
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['supplier__name', ]
+    ordering_fields = ['disc_start']

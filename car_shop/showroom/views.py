@@ -16,8 +16,9 @@ class ShowroomViewSet(mixins.ListModelMixin, mixins.CreateModelMixin,
     serializer_class = ShowroomSerializer
     permission_classes = [AllowAny, ]
     queryset = Showroom.objects.all()
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['features', 'name', 'cars__model', ]
+    ordering_fields = ['balance', ]
 
     def get_serializer_class(self):
         return self.serializers.get(self.action, self.serializer_class)
@@ -95,5 +96,6 @@ class DiscountShowroomViewSet(
 ):
     queryset = DiscountShowroom.objects.all()
     serializer_class = DiscountShowroomSerializer
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['showroom__name', ]
+    ordering_fields = ['disc_start']
