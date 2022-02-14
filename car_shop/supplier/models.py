@@ -24,7 +24,8 @@ class Supplier(abstract_models.IsActive, abstract_models.CreatedAt, abstract_mod
     showrooms = models.ManyToManyField(
         Showroom,
         blank=True,
-        null=True
+        null=True,
+        related_name='showrooms'
     )
     cars = models.ManyToManyField(Car, blank=True, null=True)
     sale_history = models.ForeignKey(
@@ -39,6 +40,7 @@ class Supplier(abstract_models.IsActive, abstract_models.CreatedAt, abstract_mod
         on_delete=models.CASCADE,
         blank=True,
         null=True,
+        related_name='discount'
 
     )
 
